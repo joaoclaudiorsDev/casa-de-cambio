@@ -4,9 +4,13 @@
   "description": "O projeto da casa de câmbio é uma aplicação que busca a conversão da taxa de uma moeda para diversas outras.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite --open"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "vite": "^4.3.8"
+  }
 }
