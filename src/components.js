@@ -1,5 +1,4 @@
 
-
 const ulELement = document.querySelector('.container main ul')
 const h2ELement = document.querySelector('.container main h2')
 

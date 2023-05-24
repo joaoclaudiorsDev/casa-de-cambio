@@ -1,8 +1,7 @@
 import './style.css'
 import './reset.style.css'
 import { renderCoins } from './components'
-
-const inputElement = document.querySelector('header form input')
+import { fetchExchange } from './services/exchange'
 const buttonElement = document.querySelector('header form button')
 
 const prototype = [
@@ -16,10 +15,22 @@ const prototype = [
 renderCoins(prototype, 'BRL');
 
 buttonElement.addEventListener('click', () => {
+    const inputElement = document.querySelector('header form input')
     const inputValue = inputElement.value;
-    fetch(`https://api.exchangerate.host/latest?base=${inputValue}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
+
+    fetchExchange(inputValue)
+      .then(exchange => {
+        const rates = exchange.rates;
+        const base = exchange.base;
+        const ratesArray = Object.entries(rates)
+        const ratesArrayToObject = ratesArray.map(rateCoin => {
+        const [name, value] = rateCoin;
+        
+            return {
+                name: name,
+                value: value,
+            }
+        })
+        renderCoins(ratesArrayToObject, base);
     })
-})
+});
