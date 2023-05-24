@@ -14,41 +14,55 @@ body {
     align-items: center;
 }
 header {
+    justify-content: space-between;
+    align-items: center;
     height: 150px;
+    display: flex;
 }
 .container header h1 {
-    background: linear-gradient(90deg, #4AC7FA 0%, #e842f7 100%);
+    background: linear-gradient(90deg, #b44afa 0%, #f8adff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin: 5px;
+    margin-top:25px;
 }
 header form {
+    max-width: 400px;
+}
+#orientacao{
+    color: #b44afa;
+    font-size: 18px;
+}
+#box-search{
     display: flex;
-    max-width: 324px;
-    width: 100%;
+    
 }
 #barr {
     padding: 16px;
     font-size: 16px;
-    width: 100%;
+    width: 70%;
     border-radius: 4px 0 0 4px;
     border: 1px solid transparent;
     border-right-width: 0;
     transition: border-color 200ms;
 }
 #barr:hover {
-    border-color: #4ac7fa;
+    border-color: #b44afa;
 }
 #search{
-    width: 56px;
-    background: #4ac7fa;
+    width: 60px;
+    background: #b44afa;
     border-radius: 0 4px 4px 0;
     transition: filter 0.2s;
+    cursor: pointer;
 }
 #search:hover{
-    filter:brightness(90%);
+    filter:brightness(80%);
 }
-
+#icon{
+    width: 40px;
+}
 .container main {
     margin-top: 32px;
     display: flex;
@@ -57,7 +71,7 @@ header form {
     height: calc(100vh - 182px);
 }
 main h2 {
-    background-image: linear-gradient(90deg, #4AC7FA 0%, #f046ff 100%);
+    background-image: linear-gradient(90deg, #b44afa 0%, #f8adff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -83,8 +97,26 @@ main ul li {
 }
 main ul li:hover {
     transform: translateY(-10px) scale(120%);
-    border-color: #95eba8
+    border-color: #f867ec;
 }
 main ul li:hover {
-   color: #95eba8
+   color: #f867ec;
+}
+
+.swal2-popup{
+    background-color: #2f2f32;
+    color: rgb(245, 239, 239);
+    border-radius: 20px;
+}
+.swal2-icon.swal2-error{
+    border-color: #f867ec;
+}
+
+.swal2-icon.swal2-error [class^="swal2-x-mark-line"]{
+    background-color: #f867ec;
+}
+
+.swal2-styled.swal2-confirm{
+    color: #000000;
+    background-color: #f867ec;
 }

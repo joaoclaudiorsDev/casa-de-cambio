@@ -1,27 +1,39 @@
+import Swal from 'sweetalert2'
+
 import './style.css'
 import './reset.style.css'
+
 import { renderCoins } from './components'
 import { fetchExchange } from './services/exchange'
 const buttonElement = document.querySelector('header form button')
 
-const prototype = [
-    { name: 'USD', value: '5.00'},
-    { name: 'USD', value: '5.00'},
-    { name: 'USD', value: '5.00'},
-    { name: 'USD', value: '5.00'},
-    { name: 'USD', value: '5.00'},
-]
-
-renderCoins(prototype, 'BRL');
-
 buttonElement.addEventListener('click', () => {
     const inputElement = document.querySelector('header form input')
     const inputValue = inputElement.value;
+    
+    if(inputValue === ''){
+        Swal.fire({
+            title: 'Digitou nadinha...',
+            text: 'O exemplo não estava claro? Escreve algo aí, por favor.',
+            icon: 'error',
+            confirmButtonText: 'Foi mal!'
+        });
+        return;
+    }
 
     fetchExchange(inputValue)
       .then(exchange => {
-        const rates = exchange.rates;
         const base = exchange.base;
+            if (base !== inputValue){
+                Swal.fire({
+                    title: 'Digitou errado, hein...',
+                    text: 'Crie moeda não, companheiro(a). Me diga uma que já exista!',
+                    icon: 'error',
+                    confirmButtonText: 'Foi mal!'
+                });
+            return;
+            }
+        const rates = exchange.rates;
         const ratesArray = Object.entries(rates)
         const ratesArrayToObject = ratesArray.map(rateCoin => {
         const [name, value] = rateCoin;
@@ -32,5 +44,13 @@ buttonElement.addEventListener('click', () => {
             }
         })
         renderCoins(ratesArrayToObject, base);
+    })
+    .catch(error =>{
+            Swal.fire({
+                title: 'Digitou errado, hein...',
+                text: error.message,
+                icon: 'error',
+                confirmButtonText: 'Foi mal!'
+        });
     })
 });
